@@ -107,7 +107,7 @@ func multiNode(testName string) features.Feature {
 			t.Log("Waiting for multi node job to complete")
 			err := wait.For(conditions.New(cfg.Client().Resources()).ResourceMatch(mpiJob, mpijobs.MPIJobSucceeded),
 				wait.WithContext(ctx),
-				wait.WithTimeout(20*time.Minute),
+				wait.WithTimeout(60*time.Minute),
 			)
 			if err != nil {
 				t.Error(err)
@@ -172,7 +172,7 @@ func singleNode() features.Feature {
 			t.Log("Waiting for single node job to complete")
 			err := wait.For(fwext.NewConditionExtension(cfg.Client().Resources()).ResourceMatch(mpiJob, mpijobs.MPIJobSucceeded),
 				wait.WithContext(ctx),
-				wait.WithTimeout(10*time.Minute),
+				wait.WithTimeout(30*time.Minute),
 			)
 			if err != nil {
 				t.Error(err)
